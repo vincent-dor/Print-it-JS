@@ -23,6 +23,7 @@ let arrowRight = document.querySelector(".arrow_left");
 arrowRight.addEventListener("click", function () {
   order = order - 1;
   updateDot();
+  createCarousel(order);
   console.log("Vous avez cliqué sur le bouton left");
   console.log(order);
 });
@@ -31,6 +32,7 @@ let arrowLeft = document.querySelector(".arrow_right");
 arrowLeft.addEventListener("click", function () {
   order = order + 1;
   updateDot();
+  createCarousel(order);
   console.log("Vous avez cliqué sur le bouton right");
   console.log(order);
 });
@@ -53,7 +55,16 @@ function updateDot() {
     } else {
       dot.classList.remove("dot_selected");
     }
+	console.log(dot, i)
   }
+}
+
+function createCarousel(order) {
+  const element = slides[order];
+  const picture = document.querySelector(".banner-img");
+  picture.setAttribute("src", "./assets/images/slideshow/" + element.image);
+  const p = document.querySelector("p");
+  p.innerHTML = element.tagLine;
 }
 
 createDots();
