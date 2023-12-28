@@ -1,28 +1,60 @@
 const slides = [
-	{
-		"image":"slide1.jpg",
-		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
-	},
-	{
-		"image":"slide2.jpg",
-		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
-	},
-	{
-		"image":"slide3.jpg",
-		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
-	},
-	{
-		"image":"slide4.png",
-		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
-	}
-]
+  {
+    image: "slide1.jpg",
+    tagLine: "Impressions tous formats <span>en boutique et en ligne</span>",
+  },
+  {
+    image: "slide2.jpg",
+    tagLine: "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
+  },
+  {
+    image: "slide3.jpg",
+    tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
+  },
+  {
+    image: "slide4.png",
+    tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
+  },
+];
+
+let order = 0;
 
 let arrowRight = document.querySelector(".arrow_left");
 arrowRight.addEventListener("click", function () {
-	console.log("Vous avez cliqué sur le bouton left")
+  order = order - 1;
+  updateDot();
+  console.log("Vous avez cliqué sur le bouton left");
+  console.log(order);
 });
 
 let arrowLeft = document.querySelector(".arrow_right");
 arrowLeft.addEventListener("click", function () {
-	console.log("Vous avez cliqué sur le bouton right")
+  order = order + 1;
+  updateDot();
+  console.log("Vous avez cliqué sur le bouton right");
+  console.log(order);
 });
+
+function createDots() {
+  for (let i = 0; i < slides.length; i++) {
+    const dot = document.createElement("div");
+    dot.setAttribute("class", "dot");
+    const dots = document.querySelector(".dots");
+    dots.appendChild(dot);
+  }
+}
+
+function updateDot() {
+  const point = document.querySelectorAll(".dot");
+  for (let i = 0; i < point.length; i++) {
+    const dot = point[i];
+    if (i === order) {
+      dot.classList.add("dot_selected");
+    } else {
+      dot.classList.remove("dot_selected");
+    }
+  }
+}
+
+createDots();
+updateDot();
