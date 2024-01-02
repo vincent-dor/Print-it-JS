@@ -17,24 +17,29 @@ const slides = [
   },
 ];
 
+const arrowRight = document.querySelector(".arrow_left");
+const arrowLeft = document.querySelector(".arrow_right");
+
 let order = 0;
 
-let arrowRight = document.querySelector(".arrow_left");
 arrowRight.addEventListener("click", function () {
-  order = order - 1;
+  if (order === 0) {
+    order = slides.length - 1;
+  } else {
+    order--;
+  }
   updateDot();
   createCarousel(order);
-  console.log("Vous avez cliqué sur le bouton left");
-  console.log(order);
 });
 
-let arrowLeft = document.querySelector(".arrow_right");
 arrowLeft.addEventListener("click", function () {
-  order = order + 1;
+  if (order === slides.length - 1) {
+    order = 0;
+  } else {
+    order++;
+  }
   updateDot();
   createCarousel(order);
-  console.log("Vous avez cliqué sur le bouton right");
-  console.log(order);
 });
 
 function createDots() {
@@ -55,17 +60,21 @@ function updateDot() {
     } else {
       dot.classList.remove("dot_selected");
     }
-	console.log(dot, i)
   }
 }
 
 function createCarousel(order) {
   const element = slides[order];
   const picture = document.querySelector(".banner-img");
-  picture.setAttribute("src", "./assets/images/slideshow/" + element.image);
-  const p = document.querySelector("p");
-  p.innerHTML = element.tagLine;
+  picture.setAttribute("src", `./assets/images/slideshow/${element.image}`);
+  const p = document.querySelector(".banner-text");
+  p.innerHTML = `${element.tagLine}`;
 }
 
-createDots();
-updateDot();
+function showCarousel() {
+  createDots();
+  updateDot();
+  createCarousel(order);
+}
+
+showCarousel();
