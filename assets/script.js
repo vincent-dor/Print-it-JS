@@ -17,12 +17,12 @@ const slides = [
   },
 ];
 
-const arrowRight = document.querySelector(".arrow_left");
-const arrowLeft = document.querySelector(".arrow_right");
+const arrowLeft = document.querySelector(".arrow_left");
+const arrowRight = document.querySelector(".arrow_right");
 
 let order = 0;
 
-arrowRight.addEventListener("click", function () {
+arrowLeft.addEventListener("click", function () {
   if (order === 0) {
     order = slides.length - 1;
   } else {
@@ -32,7 +32,7 @@ arrowRight.addEventListener("click", function () {
   createCarousel(order);
 });
 
-arrowLeft.addEventListener("click", function () {
+arrowRight.addEventListener("click", function () {
   if (order === slides.length - 1) {
     order = 0;
   } else {
